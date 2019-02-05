@@ -1290,8 +1290,7 @@
             parentVal ?
             parentVal.concat(childVal) :
             Array.isArray(childVal) ?
-            childVal :
-            [childVal] :
+            childVal : [childVal] :
             parentVal;
         return res ?
             dedupeHooks(res) :
@@ -1454,8 +1453,7 @@
                 val = props[key];
                 name = camelize(key);
                 res[name] = isPlainObject(val) ?
-                    val :
-                    { type: val };
+                    val : { type: val };
             }
         } else {
             warn(
@@ -1482,8 +1480,7 @@
             for (var key in inject) {
                 var val = inject[key];
                 normalized[key] = isPlainObject(val) ?
-                    extend({ from: key }, val) :
-                    { from: val };
+                    extend({ from: key }, val) : { from: val };
             }
         } else {
             warn(
@@ -2351,8 +2348,7 @@
     // with hand-written render functions / JSX. In such cases a full normalization
     // is needed to cater to all possible types of children values.
     function normalizeChildren(children) {
-        return isPrimitive(children) ?
-            [createTextVNode(children)] :
+        return isPrimitive(children) ? [createTextVNode(children)] :
             Array.isArray(children) ?
             normalizeArrayChildren(children) :
             undefined
@@ -3910,8 +3906,7 @@
     function normalizeScopedSlot(fn) {
         return function(scope) {
             var res = fn(scope);
-            return res && typeof res === 'object' && !Array.isArray(res) ?
-                [res] // single vnode
+            return res && typeof res === 'object' && !Array.isArray(res) ? [res] // single vnode
                 :
                 normalizeChildren(res)
         }
@@ -5399,9 +5394,7 @@
     function mergeClassData(child, parent) {
         return {
             staticClass: concat(child.staticClass, parent.staticClass),
-            class: isDef(child.class) ?
-                [child.class, parent.class] :
-                parent.class
+            class: isDef(child.class) ? [child.class, parent.class] : parent.class
         }
     }
 
@@ -6830,8 +6823,7 @@
         key
     ) {
         return modules ?
-            modules.map(function(m) { return m[key]; }).filter(function(_) { return _; }) :
-            []
+            modules.map(function(m) { return m[key]; }).filter(function(_) { return _; }) : []
     }
 
     function addProp(el, name, value, range, dynamic) {
@@ -7426,8 +7418,7 @@
         target$1.addEventListener(
             name,
             handler,
-            supportsPassive ?
-            { capture: capture, passive: passive } :
+            supportsPassive ? { capture: capture, passive: passive } :
             capture
         );
     }
@@ -7858,7 +7849,8 @@
         window.requestAnimationFrame ?
         window.requestAnimationFrame.bind(window) :
         setTimeout :
-        /* istanbul ignore next */ function(fn) { return fn(); };
+        /* istanbul ignore next */
+        function(fn) { return fn(); };
 
     function nextFrame(fn) {
         raf(function() {
